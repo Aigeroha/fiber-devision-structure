@@ -64,15 +64,15 @@ func PostMovie(movie models.Movie) models.Movie {
 	return movie
 }
 
-func DeleteMovie(id int) error {
+func DeleteMovie(id int) (string, error) {
 
 	for i, movie := range movies {
 		if movie.ID == id {
 			movies = append(movies[:i], movies[i+1:]...)
-			return nil
+			return "Movie deleted", nil
 		}
 	}
-	return errors.New("movie not found")
+	return "", errors.New("movie not found")
 }
 
 func PutMovie(id int, updatedMovie models.Movie) (models.Movie, error) {

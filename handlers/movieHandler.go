@@ -81,14 +81,16 @@ func DeleteMovie(c *fiber.Ctx) error {
 
 	id, _ := strconv.Atoi(c.Params("id"))
 
-	err := services.DeleteMovie(id)
+	status, err := services.DeleteMovie(id)
 
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{
 			"error": err.Error(),
 		})
 	}
-	return c.SendStatus(204)
+	return c.Status(200).JSON(fiber.Map{
+		"status": status,
+	})
 }
 
 func PutMovie(c *fiber.Ctx) error {
