@@ -10,7 +10,7 @@ import (
 func main() {
 	app := fiber.New()
 
-	app.Get("/moves", handlers.GetMovies)
+	app.Get("/movies", handlers.GetMovies)
 
 	app.Patch("/movies/:id", handlers.UpdateMovie)
 
